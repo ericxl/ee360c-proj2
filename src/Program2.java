@@ -51,11 +51,11 @@ public class Program2 {
             int device2 = trace[1];
             Edge e = new Edge(device1, device2, trace[2]);
             if (graph[device1] == null){
-                graph[device1] = new ArrayList<Edge>();
+                graph[device1] = new ArrayList<>();
             }
             graph[device1].add(e);
             if (graph[device2] == null){
-                graph[device2] = new ArrayList<Edge>();
+                graph[device2] = new ArrayList<>();
             }
             graph[device2].add(e);
 
