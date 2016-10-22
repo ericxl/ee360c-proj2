@@ -185,4 +185,24 @@ public class IntegrationTest {
 
         assertEquals("0\n", outStream.toString());
     }
+
+    @Test
+    public void testInput8() {
+        ByteArrayOutputStream outStream = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outStream));
+
+        Program2.parseFile(new Scanner("5 4\n" +
+                "4 0 0 \n" +
+                "1 2 1\n" +
+                "0 1 1\n" +
+                "2 3 2\n" +
+                "4 3 0 2\n"));
+
+        assertEquals("4\n" +
+                "0 4 0\n" +
+                "0 1 1\n" +
+                "1 2 1\n" +
+                "2 3 2\n", outStream.toString());
+    }
+
 }
