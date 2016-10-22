@@ -1,13 +1,11 @@
 /**
- * Created by Eric on 10/20/16.
+ * Name: Xiaoyong Liang
+ * EID: XL5432
  */
 
-import com.sun.org.apache.regexp.internal.RESyntaxException;
-
-import java.lang.reflect.Array;
-import java.util.Scanner;
 import java.io.*;
 import java.util.*;
+
 public class Program2 {
 
     public static void main (String[] args){
