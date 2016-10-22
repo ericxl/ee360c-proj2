@@ -82,7 +82,8 @@ public class Program2 {
         while(!queue.isEmpty()){
             Node current = queue.poll();
             if(current.timestamp > query[3]) {
-                continue;
+                found = false;
+                break;
             }
             if(current.device == query[1]){
                 found = true;
