@@ -69,7 +69,7 @@ public class Program2 {
     static ArrayList<Edge> solveGraph (ArrayList<Edge>[] graph, int[] query){
         PriorityQueue<Node> queue = new PriorityQueue<>();
         Set<Integer> visited = new HashSet<>();
-        HashMap<Integer, Edge> traverse = new HashMap<>();
+        HashMap<Integer, Edge> trackBack = new HashMap<>();
         ArrayList<Node> resultGraph = new ArrayList<>();
         for(int i = 0; i < graph.length; i++){
             resultGraph.add(i, new Node(i, query[3] + 1));
@@ -99,7 +99,7 @@ public class Program2 {
                         if(e.timestamp <= query[3]){
                             resultGraph.get(otherDevice).timestamp = e.timestamp;
                             queue.add(resultGraph.get(otherDevice));
-                            traverse.put(new Integer(otherDevice), e);
+                            trackBack.put(new Integer(otherDevice), e);
                         }
                     }
                 }
@@ -109,8 +109,8 @@ public class Program2 {
         if(found){
             ArrayList<Edge> trace = new ArrayList<>();
             Integer key = new Integer(query[1]);
-            while(traverse.containsKey(key)){
-                Edge e = traverse.remove(key);
+            while(trackBack.containsKey(key)){
+                Edge e = trackBack.remove(key);
                 trace.add(0,e);
                 int otherDeviceKey = e.device1 != key.intValue() ? e.device1: e.device2;
                 key = new Integer(otherDeviceKey);
