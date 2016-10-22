@@ -12,36 +12,38 @@ public class Program2 {
 
     public static void main (String[] args){
         try {
-            Scanner scan = new Scanner(new File(args[0]));
-            String[] inputArgs = scan.nextLine().trim().split("\\s+");
-            int numOfDevices = Integer.parseInt(inputArgs[0]);
-            int numOfTraces = Integer.parseInt(inputArgs[1]);
-            ArrayList<int[]> traces = new ArrayList<>();
-            int[] query = new int[4];
-            for (int i = 0; i < numOfTraces; i ++){
-                String[] traceEntries = scan.nextLine().trim().split("\\s+");
-                int[] s = new int[traceEntries.length];
-                for (int j = 0; j < traceEntries.length; j++){
-                    s[j] = Integer.parseInt(traceEntries[j]);
-                }
-                traces.add(s);
-            }
-
-            ArrayList<Edge>[] graph = constructGraph(traces, numOfDevices);
-
-            String[] queryString = scan.nextLine().trim().split("\\s+");
-            for (int i = 0; i < 4; i++){
-                query[i] = Integer.parseInt(queryString[i]);
-            }
-
-            ArrayList<Edge> backTrace = solveGraph(graph, query);
-            printResult(backTrace);
-
+            parseFile(new Scanner (new File(args[0])));
         }
         catch (Exception e){
             System.out.println("Invalid input format");
             System.exit(0);
         }
+    }
+
+    static void parseFile(Scanner scan){
+        String[] inputArgs = scan.nextLine().trim().split("\\s+");
+        int numOfDevices = Integer.parseInt(inputArgs[0]);
+        int numOfTraces = Integer.parseInt(inputArgs[1]);
+        ArrayList<int[]> traces = new ArrayList<>();
+        int[] query = new int[4];
+        for (int i = 0; i < numOfTraces; i ++){
+            String[] traceEntries = scan.nextLine().trim().split("\\s+");
+            int[] s = new int[traceEntries.length];
+            for (int j = 0; j < traceEntries.length; j++){
+                s[j] = Integer.parseInt(traceEntries[j]);
+            }
+            traces.add(s);
+        }
+
+        ArrayList<Edge>[] graph = constructGraph(traces, numOfDevices);
+
+        String[] queryString = scan.nextLine().trim().split("\\s+");
+        for (int i = 0; i < 4; i++){
+            query[i] = Integer.parseInt(queryString[i]);
+        }
+
+        ArrayList<Edge> backTrace = solveGraph(graph, query);
+        printResult(backTrace);
     }
 
     static ArrayList<Edge>[] constructGraph (ArrayList<int[]> traces, int devices){
